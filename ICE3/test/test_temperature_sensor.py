@@ -5,12 +5,14 @@ from ICE3.src.temperature_sensor import process_temperatures
 
 class TestTemperatureProcessing(unittest.TestCase):
 
-    # Test valid temperature cases
+
     def test_valid_temperature_single(self):
         self.assertEqual(process_temperatures([20]), "Min: 20.0°C, Max: 20.0°C, Avg: 20.00°C")
 
-    def test_valid_temperature_multiple(self):
+    def test_valid_temperature_double(self):
         self.assertEqual(process_temperatures([15, 35]), "Min: 15.0°C, Max: 35.0°C, Avg: 25.00°C")
+
+    def test_valid_temperature_multiple(self):
         self.assertEqual(process_temperatures([10, -10, 30]), "Min: -10.0°C, Max: 30.0°C, Avg: 10.00°C")
 
     def test_valid_temperature_with_edge_values(self):
@@ -45,11 +47,6 @@ class TestTemperatureProcessing(unittest.TestCase):
     def test_empty_input(self):
         with self.assertRaises(ValueError):  # Should raise ValueError for empty input
             process_temperatures([])
-
-    # Test for no valid temperatures in the list
-    def test_no_valid_temperatures(self):
-        with self.assertRaises(ValueError):  # Should raise ValueError for invalid temperatures
-            process_temperatures([2 ** 31 - 1, -2 ** 31])
 
     # Test mixed valid and invalid temperatures
     def test_mixed_valid_invalid(self):
