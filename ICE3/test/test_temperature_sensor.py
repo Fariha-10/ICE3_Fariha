@@ -5,7 +5,6 @@ from ICE3.src.temperature_sensor import process_temperatures
 
 class TestTemperatureProcessing(unittest.TestCase):
 
-
     def test_valid_temperature_single(self):
         self.assertEqual(process_temperatures([20]), "Min: 20.0°C, Max: 20.0°C, Avg: 20.00°C")
 
